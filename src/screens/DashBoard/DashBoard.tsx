@@ -6,13 +6,17 @@ import { styles } from "./DashBoard.styles";
 import StrategyCard from "../../components/StrategyCard";
 import AlertCard from "../../components/AlertCard";
 import SpendingComposition from "../../components/SpendingComposition";
+import TransactionTable from "../../components/TransactionTable";
 
 export default function DashBoard() {
   return (
     <View style={styles.container}>
       <Sidebar />
 
-      <ScrollView style={styles.main} contentContainerStyle={styles.mainContent}>
+      <ScrollView
+        style={styles.main}
+        contentContainerStyle={styles.mainContent}
+      >
         <Header />
         <View style={styles.metrics}>
           <MetricCard
@@ -66,12 +70,15 @@ export default function DashBoard() {
             marginTop: 24,
           }}
         >
-          <SpendingComposition />
+          <View style={{ flex: 1 }}>
+            <SpendingComposition />
+          </View>
 
-          {/* Transaction Table goes here later */}
+          <View style={{ flex: 1.4 }}>
+            <TransactionTable />
+          </View>
         </View>
       </ScrollView>
     </View>
   );
 }
-
