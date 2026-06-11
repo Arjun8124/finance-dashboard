@@ -3,6 +3,8 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import MetricCard from "../../components/MetricCard";
 import { styles } from "./DashBoard.styles";
+import StrategyCard from "../../components/StrategyCard";
+import AlertCard from "../../components/AlertCard";
 
 export default function DashBoard() {
   return (
@@ -30,6 +32,31 @@ export default function DashBoard() {
             change="+2.8% today"
             color="#3B82F6"
           />
+        </View>
+        <View style={styles.strategy}>
+          <StrategyCard />
+
+          <View
+            style={{
+              width: 400,
+              gap: 16,
+            }}
+          >
+            <AlertCard
+              title="Subscription Spike"
+              description="3 new recurring charges detected from Cloud SaaS."
+            />
+
+            <AlertCard
+              title="Emergency Fund Cap"
+              description="Your rainy day fund reached its target."
+            />
+
+            <AlertCard
+              title="Dividend Reinvestment"
+              description="AAPL and MSFT paid dividends today."
+            />
+          </View>
         </View>
       </View>
     </View>
