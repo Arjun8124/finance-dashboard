@@ -2,31 +2,16 @@ import { View } from "react-native";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import MetricCard from "../../components/MetricCard";
+import { styles } from "./DashBoard.styles";
+
 export default function DashBoard() {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        flex: 1,
-        backgroundColor: "#020617",
-      }}
-    >
+    <View style={styles.container}>
       <Sidebar />
 
-      <View
-        style={{
-          flex: 1,
-          padding: 24,
-        }}
-      >
+      <View style={styles.main}>
         <Header />
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 20,
-            marginTop: 20,
-          }}
-        >
+        <View style={styles.metrics}>
           <MetricCard
             title="Total Net Worth"
             value="$1,245,678"
