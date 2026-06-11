@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#111827",
+    backgroundColor: "#0A0E0E",
     borderRadius: 12,
     padding: 16,
     gap: 12,

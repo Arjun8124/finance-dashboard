@@ -1,17 +1,18 @@
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import MetricCard from "../../components/MetricCard";
 import { styles } from "./DashBoard.styles";
 import StrategyCard from "../../components/StrategyCard";
 import AlertCard from "../../components/AlertCard";
+import SpendingComposition from "../../components/SpendingComposition";
 
 export default function DashBoard() {
   return (
     <View style={styles.container}>
       <Sidebar />
 
-      <View style={styles.main}>
+      <ScrollView style={styles.main} contentContainerStyle={styles.mainContent}>
         <Header />
         <View style={styles.metrics}>
           <MetricCard
@@ -58,7 +59,19 @@ export default function DashBoard() {
             />
           </View>
         </View>
-      </View>
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 20,
+            marginTop: 24,
+          }}
+        >
+          <SpendingComposition />
+
+          {/* Transaction Table goes here later */}
+        </View>
+      </ScrollView>
     </View>
   );
 }
+

@@ -8,6 +8,9 @@ export const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
+    minWidth: 0,
+  },
+  mainContent: {
     padding: 24,
   },
   metrics: {
