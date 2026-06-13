@@ -1,6 +1,8 @@
 import { View, Text } from "react-native";
-import { styles } from "./Market.styles";
+import { createStyles } from "./Market.styles";
 import { Cell, Pie, PieChart, Tooltip } from "recharts";
+import { useTheme } from "../../context/ThemeContext";
+import { useMemo } from "react";
 
 const sentiments = [
   { label: "Global Equities", value: "Bullish", color: "#3B82F6" },
@@ -18,10 +20,12 @@ const data = [
 const COLORS = ["#3B82F6", "#10B981", "#F59E0B", "#8B5CF6"];
 
 export default function MarketSentiment() {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.sectionLabel}>Market Sentiment</Text>
-
       <div style={{ display: "flex", justifyContent: "center" }}>
         <PieChart width={175} height={175}>
           <Pie
@@ -39,10 +43,8 @@ export default function MarketSentiment() {
           <Tooltip />
         </PieChart>
       </div>
-
       <Text style={styles.overall}>Optimistic</Text>
       <Text style={styles.score}>Score: 74/100</Text>
-
       {sentiments.map((item, index) => (
         <View
           key={item.label}

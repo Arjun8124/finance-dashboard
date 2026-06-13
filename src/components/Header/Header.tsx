@@ -1,12 +1,15 @@
-import { View, Text, TextInput } from "react-native";
-import { styles } from "./Header.style";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { View, Text, TextInput, Pressable } from "react-native";
+import { createStyles } from "./Header.style";
+import { useNavigate, useLocation } from "react-router-dom";
 import useDebounce from "../../hooks/useDebounce";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
+import { useTheme } from "../../context/ThemeContext";
+
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isDark, colors, toggleTheme } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   const [search, setSearch] = useState<string>("");
   const debouncedSearch = useDebounce<string>(search, 500);
@@ -21,7 +24,7 @@ export default function Header() {
         value={search}
         onChangeText={setSearch}
         placeholder="Search portfolio or markets..."
-        placeholderTextColor="#94A3B8"
+        placeholderTextColor={colors.textMuted}
         style={styles.searchInput}
       />
 
@@ -44,6 +47,9 @@ export default function Header() {
       </View>
 
       <View style={styles.rightContainer}>
+        <Pressable style={styles.themeToggle} onPress={toggleTheme}>
+          <Text style={styles.themeToggleText}>{isDark ? "☀️" : "🌙"}</Text>
+        </Pressable>
         <Text style={styles.navItem}>Settings</Text>
         <View style={styles.profileCircle} />
       </View>

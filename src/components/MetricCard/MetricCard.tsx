@@ -1,20 +1,26 @@
-import {Text, View} from "react-native";
-import { styles } from "./MetricCard.styles";
+import { Text, View } from "react-native";
+import { createStyles } from "./MetricCard.styles";
+import { useTheme } from "../../context/ThemeContext";
+import { useMemo } from "react";
 
 type MetricCardProps = {
-    title : string,
-    value : string,
-    change : string,
-    color : string
-}
+  title: string;
+  value: string;
+  change: string;
+  color: string;
+};
 
-export default function MetricCard(props : MetricCardProps){
-    return <View style={styles.container}>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.value}>{props.value}</Text>
-        <Text style={[
-          styles.change,
-          { color: props.color },
-        ]}>{props.change}</Text>
+export default function MetricCard(props: MetricCardProps) {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.value}>{props.value}</Text>
+      <Text style={[styles.change, { color: props.color }]}>
+        {props.change}
+      </Text>
     </View>
+  );
 }

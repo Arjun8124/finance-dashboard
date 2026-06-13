@@ -1,5 +1,7 @@
 import { View, Text } from "react-native";
-import { styles } from "./Sector.styles";
+import { createStyles } from "./Sector.styles";
+import { useTheme } from "../../context/ThemeContext";
+import { useMemo } from "react";
 
 const sectors = [
   { name: "Technology", value: "42%", color: "#3B82F6" },
@@ -9,10 +11,12 @@ const sectors = [
 ];
 
 export default function SectorAllocation() {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.sectionLabel}>Sector Allocation</Text>
-
       {sectors.map((sector) => (
         <View key={sector.name} style={styles.row}>
           <View style={styles.dotLabel}>

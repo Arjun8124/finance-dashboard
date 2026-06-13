@@ -1,106 +1,42 @@
 import { StyleSheet } from "react-native";
+import type { ThemeColors } from "../../constants/theme";
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-
-    backgroundColor: "#111827",
-
-    borderRadius: 16,
-
-    padding: 24,
-
-    borderWidth: 1,
-    borderColor: "#1E293B",
-  },
-
-  header: {
-    flexDirection: "row",
-
-    justifyContent: "space-between",
-
-    alignItems: "center",
-
-    marginBottom: 24,
-  },
-
-  title: {
-    color: "#FFFFFF",
-
-    fontSize: 22,
-
-    fontWeight: "700",
-  },
-
-  actions: {
-    flexDirection: "row",
-
-    gap: 16,
-  },
-
-  actionText: {
-    color: "#60A5FA",
-
-    fontSize: 14,
-  },
-
-  tableHeader: {
-    flexDirection: "row",
-
-    paddingBottom: 12,
-
-    borderBottomWidth: 1,
-
-    borderBottomColor: "#374151",
-
-    marginBottom: 12,
-  },
-
-  headerText: {
-    color: "#94A3B8",
-
-    fontSize: 12,
-
-    fontWeight: "600",
-  },
-
-  row: {
-    flexDirection: "row",
-
-    alignItems: "center",
-
-    paddingVertical: 16,
-
-    borderBottomWidth: 1,
-
-    borderBottomColor: "#1F2937",
-  },
-
-  merchant: {
-    color: "#FFFFFF",
-
-    fontSize: 14,
-
-    fontWeight: "600",
-  },
-
-  date: {
-    color: "#94A3B8",
-
-    fontSize: 12,
-
-    marginTop: 4,
-  },
-
-  cellText: {
-    color: "#E5E7EB",
-
-    fontSize: 13,
-  },
-
-  amount: {
-    fontSize: 14,
-
-    fontWeight: "600",
-  },
-});
+export const createStyles = (c: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: c.card,
+      borderRadius: 16,
+      padding: 24,
+      borderWidth: 1,
+      borderColor: c.cardBorder,
+    },
+    header: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: 24,
+    },
+    title: { color: c.text, fontSize: 22, fontWeight: "700" },
+    actions: { flexDirection: "row", gap: 16 },
+    actionText: { color: c.primaryLight, fontSize: 14 },
+    tableHeader: {
+      flexDirection: "row",
+      paddingBottom: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: c.divider,
+      marginBottom: 12,
+    },
+    headerText: { color: c.textSecondary, fontSize: 12, fontWeight: "600" },
+    row: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingVertical: 16,
+      borderBottomWidth: 1,
+      borderBottomColor: c.divider,
+    },
+    merchant: { color: c.text, fontSize: 14, fontWeight: "600" },
+    date: { color: c.textSecondary, fontSize: 12, marginTop: 4 },
+    cellText: { color: c.text, fontSize: 13 },
+    amount: { fontSize: 14, fontWeight: "600" },
+  });

@@ -1,10 +1,22 @@
 import { View, Text, Pressable } from "react-native";
-import { styles } from "./Sidebar.styles";
+import { createStyles } from "./Sidebar.styles";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
+import { useMemo } from "react";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
+
+  const navItems = [
+    { icon: "📊", label: "Dashboard", path: "/" },
+    { icon: "💳", label: "Accounts", path: "/accounts" },
+    { icon: "📄", label: "Transactions", path: "/transactions" },
+    { icon: "📁", label: "Budgets", path: "/budget" },
+    { icon: "💡", label: "Insights", path: "/insights" },
+  ];
 
   return (
     <View style={styles.container}>
@@ -20,98 +32,27 @@ export default function Sidebar() {
         </View>
 
         <View style={styles.menu}>
-          <Pressable
-            style={[
-              styles.menuItem,
-              location.pathname === "/" && styles.activeItem,
-            ]}
-            onPress={() => navigate("/")}
-          >
-            <Text
-              style={[
-                styles.menuIcon,
-                location.pathname === "/" && styles.activeIcon,
-              ]}
-            >
-              📊
-            </Text>
-            <Text
-              style={[styles.item, location.pathname === "/" && styles.active]}
-            >
-              Dashboard
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.menuItem,
-              location.pathname === "/accounts" && styles.activeItem,
-            ]}
-          >
-            <Text style={styles.menuIcon}>💳</Text>
-            <Text
-              style={[
-                styles.item,
-                location.pathname === "/accounts" && styles.active,
-              ]}
-            >
-              Accounts
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.menuItem,
-              location.pathname === "/transactions" && styles.activeItem,
-            ]}
-          >
-            <Text style={styles.menuIcon}>📄</Text>
-            <Text
-              style={[
-                styles.item,
-                location.pathname === "/transactions" && styles.active,
-              ]}
-            >
-              Transactions
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.menuItem,
-              location.pathname === "/budget" && styles.activeItem,
-            ]}
-            onPress={() => navigate("/budget")}
-          >
-            <Text style={styles.menuIcon}>📁</Text>
-            <Text
-              style={[
-                styles.item,
-                location.pathname === "/budget" && styles.active,
-              ]}
-            >
-              Budgets
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[
-              styles.menuItem,
-              location.pathname === "/insights" && styles.activeItem,
-            ]}
-            onPress={() => navigate("/insights")}
-          >
-            <Text style={styles.menuIcon}>💡</Text>
-            <Text
-              style={[
-                styles.item,
-                location.pathname === "/insights" && styles.active,
-              ]}
-            >
-              Insights
-            </Text>
-          </Pressable>
+          {navItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Pressable
+                key={item.path}
+                style={[styles.menuItem, isActive && styles.activeItem]}
+                onPress={() => navigate(item.path)}
+              >
+                <Text style={[styles.menuIcon, isActive && styles.activeIcon]}>
+                  {item.icon}
+                </Text>
+                <Text style={[styles.item, isActive && styles.active]}>
+                  {item.label}
+                </Text>
+              </Pressable>
+            );
+          })}
         </View>
       </View>
 
       <View>
-        {/* Pro Access Card */}
         <View style={styles.proCard}>
           <Text style={styles.proLabel}>PRO ACCESS</Text>
           <Text style={styles.proTitle}>Unlock AI Strategy{"\n"}Insights</Text>
@@ -119,8 +60,6 @@ export default function Sidebar() {
             <Text style={styles.proButtonText}>Upgrade to Premium</Text>
           </Pressable>
         </View>
-
-        {/* Bottom Links */}
         <View style={styles.bottomLinks}>
           <Text style={styles.bottomLink}>⊙ Help Center</Text>
           <Text style={styles.bottomLink}>⊳ Logout</Text>
