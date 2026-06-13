@@ -4,17 +4,27 @@ import { styles } from "./AISignalCard.styles";
 export default function AISignalCard() {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>ACTIVE SIGNAL</Text>
+      <View style={styles.badgeRow}>
+        <View style={styles.badgeDot} />
+        <Text style={styles.label}>Active Signal: Rebalance Priority</Text>
+      </View>
 
-      <Text style={styles.signal}>Rebalance Priority</Text>
+      <Text style={styles.signal}>
+        Your technology exposure has increased by 14.2% since last quarter.
+      </Text>
 
       <Text style={styles.description}>
-        Your technology exposure has increased by 14.2% this quarter.
+        Our algorithms suggest shifting 4% of gains into emerging market debt
+        and high-yield real estate to maintain your risk-adjusted profile.
       </Text>
 
-      <Text style={styles.subtext}>
-        Our AI suggests shifting 4% gains toward healthcare and energy.
-      </Text>
+      <View style={styles.confidenceRow}>
+        <Text style={styles.confidenceLabel}>Signal Confidence</Text>
+        <View style={styles.confidenceBar}>
+          <View style={[styles.confidenceFill, { width: "92%" }]} />
+        </View>
+        <Text style={styles.confidenceValue}>92%</Text>
+      </View>
 
       <View style={styles.buttonContainer}>
         <Pressable style={styles.primaryButton}>

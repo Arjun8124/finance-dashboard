@@ -5,11 +5,14 @@ export const styles = StyleSheet.create({
     flex: 1,
     minWidth: 0,
 
-    backgroundColor: "#0A0E0E",
+    backgroundColor: "#111827",
 
     borderRadius: 16,
 
     padding: 24,
+
+    borderWidth: 1,
+    borderColor: "#1E293B",
   },
 
   header: {
@@ -73,7 +76,7 @@ export const styles = StyleSheet.create({
   noteCard: {
     marginTop: 16,
     padding: 16,
-    backgroundColor: "#181C1C",
+    backgroundColor: "#0F172A",
     borderRadius: 12,
   },
 

@@ -3,35 +3,27 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    backgroundColor: "#111827",
-
-    borderRadius: 16,
-
-    padding: 24,
+    backgroundColor: "#1E40AF",
+    borderRadius: 14,
+    padding: 16,
   },
-
   title: {
-    color: "#94A3B8",
-
-    fontSize: 14,
-
-    marginBottom: 24,
+    color: "rgba(255,255,255,0.6)",
+    fontSize: 9,
+    fontWeight: "700",
+    letterSpacing: 1,
+    textTransform: "uppercase",
+    marginBottom: 6,
   },
-
   stock: {
     color: "#FFFFFF",
-
-    fontSize: 40,
-
-    fontWeight: "700",
+    fontSize: 22,
+    fontWeight: "800",
+    marginBottom: 2,
   },
-
   growth: {
-    color: "#22C55E",
-
-    fontSize: 18,
-
+    color: "#93C5FD",
+    fontSize: 13,
     fontWeight: "600",
   },
 });

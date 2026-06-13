@@ -3,16 +3,27 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#0A0E0E",
+    backgroundColor: "#111827",
     borderRadius: 12,
     padding: 16,
-    gap: 12,
+    gap: 14,
+    alignItems: "flex-start",
+    borderWidth: 1,
+    borderColor: "#1E293B",
   },
 
-  indicator: {
-    width: 4,
-    borderRadius: 2,
-    backgroundColor: "#F59E0B",
+  iconCircle: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  iconDot: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
   },
 
   content: {
@@ -23,7 +34,7 @@ export const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 14,
     fontWeight: "600",
-    marginBottom: 6,
+    marginBottom: 4,
   },
 
   description: {

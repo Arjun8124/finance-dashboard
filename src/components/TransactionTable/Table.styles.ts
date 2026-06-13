@@ -4,11 +4,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
 
-    backgroundColor: "#0A0E0E",
+    backgroundColor: "#111827",
 
     borderRadius: 16,
 
     padding: 24,
+
+    borderWidth: 1,
+    borderColor: "#1E293B",
   },
 
   header: {

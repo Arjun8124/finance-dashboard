@@ -5,10 +5,8 @@ export default function TopPerformer() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Top Performer</Text>
-
       <Text style={styles.stock}>NVDA</Text>
-
-      <Text style={styles.growth}>+8.4%</Text>
+      <Text style={styles.growth}>+5.4%</Text>
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Text } from "react-native";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header";
 import MetricCard from "../../components/MetricCard";
@@ -21,21 +21,21 @@ export default function DashBoard() {
         <View style={styles.metrics}>
           <MetricCard
             title="Total Net Worth"
-            value="$1,245,678"
-            change="+4.2% today"
+            value="$1,248,500"
+            change="+12.4% vs last month"
             color="#10B981"
           />
           <MetricCard
-            title="Liquid Cash"
-            value="$120,340"
-            change="-1.5% today"
-            color="#EF4444"
+            title="Monthly Spending"
+            value="$4,280"
+            change="+2.1% higher than avg"
+            color="#F59E0B"
           />
           <MetricCard
-            title="Investment Portfolio"
-            value="$985,338"
-            change="+2.8% today"
-            color="#3B82F6"
+            title="Total Savings"
+            value="$245,000"
+            change="On track for Q4 goal"
+            color="#10B981"
           />
         </View>
         <View style={styles.strategy}>
@@ -43,39 +43,58 @@ export default function DashBoard() {
 
           <View
             style={{
-              width: 400,
-              gap: 16,
+              width: 340,
+              gap: 14,
             }}
           >
+            <Text
+              style={{
+                color: "#FFFFFF",
+                fontSize: 20,
+                fontWeight: "700",
+                marginBottom: 2,
+              }}
+            >
+              Active Alerts
+            </Text>
             <AlertCard
               title="Subscription Spike"
-              description="3 new recurring charges detected from Cloud SaaS."
+              description='3 new recurring charges detected from "Cloud SaaS" in the last 48h.'
+              iconColor="#EF4444"
             />
 
             <AlertCard
               title="Emergency Fund Cap"
-              description="Your rainy day fund reached its target."
+              description='Your "Rainy Day" fund has reached its target of $20k. Redirecting flows?'
+              iconColor="#F59E0B"
             />
 
             <AlertCard
               title="Dividend Reinvestment"
-              description="AAPL and MSFT paid dividends today."
+              description="AAPL and MSFT paid dividends today. Automatic reinvestment pending."
+              iconColor="#3B82F6"
             />
           </View>
         </View>
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 20,
-            marginTop: 24,
-          }}
-        >
+        <View style={styles.bottomSection}>
           <View style={{ flex: 1 }}>
             <SpendingComposition />
           </View>
 
           <View style={{ flex: 1.4 }}>
             <TransactionTable />
+          </View>
+        </View>
+
+        {/* Footer */}
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            © 2023 Editorial Finance. All financial data is encrypted and secure.
+          </Text>
+          <View style={styles.footerLinks}>
+            <Text style={styles.footerLink}>Privacy Policy</Text>
+            <Text style={styles.footerLink}>Security Audit</Text>
+            <Text style={styles.footerLink}>API Docs</Text>
           </View>
         </View>
       </ScrollView>

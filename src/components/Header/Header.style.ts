@@ -5,36 +5,44 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-
-    paddingVertical: 16,
-    marginBottom: 24,
+    paddingVertical: 14,
+    marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: "#1E293B",
   },
 
   searchInput: {
-    width: 320,
+    width: 300,
     backgroundColor: "#111827",
     color: "#FFFFFF",
     paddingHorizontal: 16,
-    paddingVertical: 12,
-    borderRadius: 8,
+    paddingVertical: 11,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#1E293B",
+    fontSize: 13,
   },
 
   navContainer: {
     flexDirection: "row",
-    gap: 24,
+    gap: 28,
   },
 
   activeNav: {
     color: "#FFFFFF",
     fontSize: 14,
     fontWeight: "600",
-    cursor : 'pointer'
+    cursor: "pointer",
+    borderBottomWidth: 2,
+    borderBottomColor: "#FFFFFF",
+    paddingBottom: 4,
   },
 
   navItem: {
     color: "#94A3B8",
     fontSize: 14,
-    cursor : "pointer"
+    cursor: "pointer",
+    paddingBottom: 4,
   },
 
   rightContainer: {
@@ -44,10 +52,10 @@ export const styles = StyleSheet.create({
   },
 
   profileCircle: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     backgroundColor: "#2563EB",
-    cursor : "pointer"
+    cursor: "pointer",
   },
 });
