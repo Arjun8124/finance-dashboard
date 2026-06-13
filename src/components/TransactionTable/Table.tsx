@@ -81,7 +81,7 @@ export default function TransactionTable() {
               styles.amount,
               {
                 flex: 1,
-                color: item.amount.startsWith("+") ? "#22C55E" : "#FFFFFF",
+                color: item.amount.startsWith("+") ? "#22C55E" : "#f11e1eff",
               },
             ]}
           >
