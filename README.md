@@ -89,6 +89,8 @@ Events tracked:
 
 ## Performance optimizations
 
+- **Code splitting** — the three route screens are `React.lazy` + `Suspense`, so
+  each loads on first visit; recharts only ships in the Insights chunk.
 - **`React.memo`** on the list-rendered cards (`MetricCard`, `AlertCard`,
   `BudgetCategoryCard`) to skip re-renders when their props don't change.
 - **`useMemo`** for the per-component themed stylesheets and **`useCallback`**
