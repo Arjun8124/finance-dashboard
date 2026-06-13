@@ -12,7 +12,10 @@ export default function Sidebar() {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
   const { isSidebarOpen, closeSidebar } = useMobileNav();
-  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
+  const styles = useMemo(
+    () => createStyles(colors, isMobile),
+    [colors, isMobile],
+  );
 
   if (isMobile && !isSidebarOpen) return null;
 
@@ -23,8 +26,8 @@ export default function Sidebar() {
 
   const navItems = [
     { icon: "📊", label: "Dashboard", path: "/" },
-    { icon: "💳", label: "Accounts", path: "/accounts" },
-    { icon: "📄", label: "Transactions", path: "/transactions" },
+    // { icon: "💳", label: "Accounts", path: "/accounts" },
+    // { icon: "📄", label: "Transactions", path: "/transactions" },
     { icon: "📁", label: "Budgets", path: "/budget" },
     { icon: "💡", label: "Insights", path: "/insights" },
   ];
@@ -62,7 +65,9 @@ export default function Sidebar() {
                   style={[styles.menuItem, isActive && styles.activeItem]}
                   onPress={() => handleNav(item.path)}
                 >
-                  <Text style={[styles.menuIcon, isActive && styles.activeIcon]}>
+                  <Text
+                    style={[styles.menuIcon, isActive && styles.activeIcon]}
+                  >
                     {item.icon}
                   </Text>
                   <Text style={[styles.item, isActive && styles.active]}>
@@ -77,7 +82,9 @@ export default function Sidebar() {
         <View>
           <View style={styles.proCard}>
             <Text style={styles.proLabel}>PRO ACCESS</Text>
-            <Text style={styles.proTitle}>Unlock AI Strategy{"\n"}Insights</Text>
+            <Text style={styles.proTitle}>
+              Unlock AI Strategy{"\n"}Insights
+            </Text>
             <Pressable style={styles.proButton}>
               <Text style={styles.proButtonText}>Upgrade to Premium</Text>
             </Pressable>

@@ -13,7 +13,10 @@ export default function Header() {
   const { isDark, colors, toggleTheme } = useTheme();
   const { isMobile } = useResponsive();
   const { openSidebar } = useMobileNav();
-  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
+  const styles = useMemo(
+    () => createStyles(colors, isMobile),
+    [colors, isMobile],
+  );
 
   const [search, setSearch] = useState<string>("");
   const debouncedSearch = useDebounce<string>(search, 500);
@@ -34,7 +37,9 @@ export default function Header() {
         <TextInput
           value={search}
           onChangeText={setSearch}
-          placeholder={isMobile ? "Search..." : "Search portfolio or markets..."}
+          placeholder={
+            isMobile ? "Search..." : "Search portfolio or markets..."
+          }
           placeholderTextColor={colors.textMuted}
           style={styles.searchInput}
         />
@@ -43,20 +48,33 @@ export default function Header() {
       {!isMobile && (
         <View style={styles.navContainer}>
           <Text
-            style={location.pathname === "/" ? styles.activeNav : styles.navItem}
+            style={
+              location.pathname === "/" ? styles.activeNav : styles.navItem
+            }
             onPress={() => navigate("/")}
           >
             Portfolio
           </Text>
           <Text
             style={
-              location.pathname === "/budget" ? styles.activeNav : styles.navItem
+              location.pathname === "/budget"
+                ? styles.activeNav
+                : styles.navItem
             }
             onPress={() => navigate("/budget")}
           >
             Analysis
           </Text>
-          <Text style={styles.navItem}>Market</Text>
+          <Text
+            style={
+              location.pathname === "/insights"
+                ? styles.activeNav
+                : styles.navItem
+            }
+            onPress={() => navigate("/insights")}
+          >
+            Market
+          </Text>
         </View>
       )}
 
