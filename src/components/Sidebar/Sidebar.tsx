@@ -1,7 +1,11 @@
 import { View, Text, Pressable } from "react-native";
 import { styles } from "./Sidebar.styles";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <View style={styles.container}>
       <View>
@@ -16,25 +20,92 @@ export default function Sidebar() {
         </View>
 
         <View style={styles.menu}>
-          <Pressable style={styles.activeItem}>
-            <Text style={styles.activeIcon}>📊</Text>
-            <Text style={styles.active}>Dashboard</Text>
+          <Pressable
+            style={[
+              styles.menuItem,
+              location.pathname === "/" && styles.activeItem,
+            ]}
+            onPress={() => navigate("/")}
+          >
+            <Text
+              style={[
+                styles.menuIcon,
+                location.pathname === "/" && styles.activeIcon,
+              ]}
+            >
+              📊
+            </Text>
+            <Text
+              style={[styles.item, location.pathname === "/" && styles.active]}
+            >
+              Dashboard
+            </Text>
           </Pressable>
-          <Pressable style={styles.menuItem}>
+          <Pressable
+            style={[
+              styles.menuItem,
+              location.pathname === "/accounts" && styles.activeItem,
+            ]}
+          >
             <Text style={styles.menuIcon}>💳</Text>
-            <Text style={styles.item}>Accounts</Text>
+            <Text
+              style={[
+                styles.item,
+                location.pathname === "/accounts" && styles.active,
+              ]}
+            >
+              Accounts
+            </Text>
           </Pressable>
-          <Pressable style={styles.menuItem}>
+          <Pressable
+            style={[
+              styles.menuItem,
+              location.pathname === "/transactions" && styles.activeItem,
+            ]}
+          >
             <Text style={styles.menuIcon}>📄</Text>
-            <Text style={styles.item}>Transactions</Text>
+            <Text
+              style={[
+                styles.item,
+                location.pathname === "/transactions" && styles.active,
+              ]}
+            >
+              Transactions
+            </Text>
           </Pressable>
-          <Pressable style={styles.menuItem}>
+          <Pressable
+            style={[
+              styles.menuItem,
+              location.pathname === "/budget" && styles.activeItem,
+            ]}
+            onPress={() => navigate("/budget")}
+          >
             <Text style={styles.menuIcon}>📁</Text>
-            <Text style={styles.item}>Budgets</Text>
+            <Text
+              style={[
+                styles.item,
+                location.pathname === "/budget" && styles.active,
+              ]}
+            >
+              Budgets
+            </Text>
           </Pressable>
-          <Pressable style={styles.menuItem}>
+          <Pressable
+            style={[
+              styles.menuItem,
+              location.pathname === "/insights" && styles.activeItem,
+            ]}
+            onPress={() => navigate("/insights")}
+          >
             <Text style={styles.menuIcon}>💡</Text>
-            <Text style={styles.item}>Insights</Text>
+            <Text
+              style={[
+                styles.item,
+                location.pathname === "/insights" && styles.active,
+              ]}
+            >
+              Insights
+            </Text>
           </Pressable>
         </View>
       </View>
@@ -43,9 +114,7 @@ export default function Sidebar() {
         {/* Pro Access Card */}
         <View style={styles.proCard}>
           <Text style={styles.proLabel}>PRO ACCESS</Text>
-          <Text style={styles.proTitle}>
-            Unlock AI Strategy{"\n"}Insights
-          </Text>
+          <Text style={styles.proTitle}>Unlock AI Strategy{"\n"}Insights</Text>
           <Pressable style={styles.proButton}>
             <Text style={styles.proButtonText}>Upgrade to Premium</Text>
           </Pressable>
