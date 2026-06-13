@@ -1,6 +1,5 @@
 import { View, Text, Pressable, ActivityIndicator } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
-import { typography } from "../../constants/typography";
 
 type DataStateProps = {
   loading: boolean;
@@ -11,10 +10,7 @@ type DataStateProps = {
   children: React.ReactNode;
 };
 
-/**
- * Renders loading / error / empty UI for a data-driven section and only shows
- * `children` once data is present. Keeps that branching out of the screens.
- */
+// Renders loading / error / empty UI; shows `children` only once data is ready.
 export default function DataState({
   loading,
   error,
@@ -33,7 +29,7 @@ export default function DataState({
         style={{ paddingVertical: 48, alignItems: "center", gap: 12 }}
       >
         <ActivityIndicator color={colors.primary} />
-        <Text style={{ color: colors.textSecondary, fontSize: typography.body }}>
+        <Text style={{ color: colors.textSecondary, fontSize: 14 }}>
           Loading…
         </Text>
       </View>
@@ -43,7 +39,7 @@ export default function DataState({
   if (error) {
     return (
       <View style={{ paddingVertical: 48, alignItems: "center", gap: 12 }}>
-        <Text style={{ color: colors.danger, fontSize: typography.body, textAlign: "center" }}>
+        <Text style={{ color: colors.danger, fontSize: 14, textAlign: "center" }}>
           {error.message}
         </Text>
         {onRetry && (
@@ -58,7 +54,7 @@ export default function DataState({
               backgroundColor: colors.primary,
             }}
           >
-            <Text style={{ color: "#FFFFFF", fontSize: typography.body }}>Retry</Text>
+            <Text style={{ color: "#FFFFFF", fontSize: 14 }}>Retry</Text>
           </Pressable>
         )}
       </View>
@@ -68,7 +64,7 @@ export default function DataState({
   if (isEmpty) {
     return (
       <View style={{ paddingVertical: 48, alignItems: "center" }}>
-        <Text style={{ color: colors.textMuted, fontSize: typography.body }}>
+        <Text style={{ color: colors.textMuted, fontSize: 14 }}>
           {emptyMessage}
         </Text>
       </View>

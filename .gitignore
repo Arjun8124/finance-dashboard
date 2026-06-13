@@ -12,9 +12,6 @@ dist
 dist-ssr
 *.local
 
-# Rendered design references (from Figma PDF)
-.design/
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

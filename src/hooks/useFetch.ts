@@ -1,16 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
-/**
- * Small data-fetching hook: runs the given fetcher on mount and tracks
- * loading / error / data.
- *
- * - On mount, `loading` already starts as `true`, so the effect just kicks
- *   off the request.
- * - `refetch` (used by the retry button) resets state and runs it again.
- *
- * The fetcher is a stable function from the api module, so the effect runs
- * once on mount.
- */
+// Runs `fetcher` on mount and tracks loading/error/data. `loading` starts
+// true, so the effect just kicks off the request; `refetch` resets state and
+// re-runs it (used by the retry button).
 export default function useFetch<T>(fetcher: () => Promise<T>) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);

@@ -1,6 +1,4 @@
-// Mock dataset for the dashboard. In a real app this would come from an API;
-// here it stands in as our "mock JSON" and is served through the fake async
-// layer in `./index.ts`.
+// Mock data, served through the fake API in ./index.ts.
 
 export type Metric = {
   title: string;
@@ -61,9 +59,8 @@ export type CashFlowInsight = {
 };
 
 export type InsightsData = {
-  // raw numbers so we can generate the headline insight dynamically
+  // used to build the headline insight dynamically
   techExposureChange: number;
-  duplicateSubscriptionSavings: number;
   cashFlow: CashFlowInsight[];
 };
 
@@ -107,7 +104,6 @@ export const budgetData: BudgetData = {
 
 export const insightsData: InsightsData = {
   techExposureChange: 14.2,
-  duplicateSubscriptionSavings: 180,
   cashFlow: [
     { id: "i1", icon: "💡", title: "Surplus Opportunity", desc: "You spent 12% less on dining this month. Transfer $450 to your Growth basket to stay ahead of your 2024 goal." },
     { id: "i2", icon: "🔄", title: "Recurring Audit", desc: "We detected two overlapping streaming subscriptions. Canceling XMedia+ would save you $180 annually." },

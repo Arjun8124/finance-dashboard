@@ -43,12 +43,6 @@ export const createStyles = (c: ThemeColors) =>
       lineHeight: 20,
       marginBottom: 20,
     },
-    subtext: {
-      color: c.textMuted,
-      fontSize: 13,
-      lineHeight: 20,
-      marginBottom: 20,
-    },
     confidenceRow: {
       flexDirection: "row",
       alignItems: "center",

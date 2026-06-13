@@ -24,16 +24,13 @@ npm run build    # type-check + production build
 npm run preview  # preview the production build
 ```
 
-To preview the error state, open any page with `?simulate=error`
-(e.g. `http://localhost:5173/?simulate=error`).
-
 ## Project structure
 
 ```
 src/
   api/          mock data + a fake async "API" layer
   components/   one folder per UI component (Component.tsx + styles + index.ts)
-  constants/    design tokens (colors, typography)
+  constants/    design tokens (color palette)
   context/      Theme + mobile-nav React contexts
   hooks/        useFetch, useAnalytics, useDebounce, useLocalStorage, useResponsive
   screens/      Dashboard (/), Budget (/budget), Insights (/insights)
@@ -92,9 +89,6 @@ Events tracked:
 
 ## Performance optimizations
 
-- **Code splitting** — the three route screens are `React.lazy` + `Suspense`, so
-  each loads on first visit. The build confirms separate chunks; recharts only
-  ships in the Insights chunk, so the other routes don't download it.
 - **`React.memo`** on the list-rendered cards (`MetricCard`, `AlertCard`,
   `BudgetCategoryCard`) to skip re-renders when their props don't change.
 - **`useMemo`** for the per-component themed stylesheets and **`useCallback`**
@@ -110,9 +104,9 @@ Events tracked:
 
 ## Design tokens
 
-Colors and typography in `src/constants` are taken from the Figma design-system
-frames (e.g. Display 44 / Heading 24 / Title 18 / Body 14, and the
-blue / green / amber / red accent palette), with a full dark and light theme.
+Colors live in `src/constants/theme.ts` as a single source of truth — a full
+dark and light palette (blue / green / amber / red accents) derived from the
+Figma design-system frames and consumed through the theme context.
 
 ## Trade-offs & known limitations
 
