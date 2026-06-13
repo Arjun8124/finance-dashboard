@@ -1,17 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { styles } from "./Budget.styles";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import BudgetVelocity from "../../components/BudgetVelocity";
 import BudgetCategoryCard from "../../components/BudgetCategory";
 import MetricCard from "../../components/MetricCard";
+import BudgetStrategy from "../../components/BudgetStrategy";
+import RecentAlerts from "../../components/RecentAlerts";
 
 export default function Budget() {
   return (
     <View style={styles.container}>
       <Sidebar />
 
-      <View style={styles.content}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.content}>
         <Header />
 
         <Text style={styles.heading}>Monthly Overview</Text>
@@ -87,7 +89,7 @@ export default function Budget() {
             <RecentAlerts />
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
