@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
       flex: 1,
       borderRadius: 16,
-      padding: 28,
+      padding: isMobile ? 20 : 28,
       minHeight: 260,
       backgroundColor: c.strategyBg,
     },
@@ -25,9 +25,9 @@ export const createStyles = (c: ThemeColors) =>
     },
     title: {
       color: c.strategyText,
-      fontSize: 28,
+      fontSize: isMobile ? 24 : 28,
       fontWeight: "700",
-      lineHeight: 38,
+      lineHeight: isMobile ? 32 : 38,
       marginBottom: 16,
     },
     description: {
@@ -36,12 +36,16 @@ export const createStyles = (c: ThemeColors) =>
       lineHeight: 24,
       marginBottom: 28,
     },
-    buttonContainer: { flexDirection: "row", gap: 12 },
+    buttonContainer: {
+      flexDirection: isMobile ? "column" : "row",
+      gap: 12,
+    },
     primaryButton: {
       backgroundColor: c.strategyBtnBg,
       paddingHorizontal: 20,
       paddingVertical: 12,
       borderRadius: 10,
+      alignItems: "center",
     },
     primaryText: { color: c.strategyBtnText, fontWeight: "700", fontSize: 14 },
     secondaryButton: {
@@ -51,10 +55,7 @@ export const createStyles = (c: ThemeColors) =>
       borderRadius: 10,
       borderWidth: 1,
       borderColor: "rgba(255,255,255,0.2)",
+      alignItems: "center",
     },
-    secondaryText: {
-      color: c.strategySecText,
-      fontWeight: "600",
-      fontSize: 14,
-    },
+    secondaryText: { color: c.strategySecText, fontWeight: "600", fontSize: 14 },
   });

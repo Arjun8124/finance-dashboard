@@ -1,22 +1,44 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
-      width: 240,
+      width: isMobile ? 280 : 240,
       backgroundColor: c.sidebar,
       padding: 20,
       paddingTop: 24,
       justifyContent: "space-between",
       borderRightWidth: 1,
       borderRightColor: c.divider,
+      ...(isMobile && {
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        zIndex: 100,
+        elevation: 10,
+      }),
+    },
+    overlay: {
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: "rgba(0,0,0,0.5)",
+      zIndex: 90,
     },
     brandRow: {
       flexDirection: "row",
       alignItems: "center",
-      gap: 10,
+      justifyContent: "space-between",
       marginBottom: 36,
+    },
+    brandLeft: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 10,
     },
     brandIcon: {
       width: 36,
@@ -33,6 +55,13 @@ export const createStyles = (c: ThemeColors) =>
       fontSize: 9,
       letterSpacing: 1.5,
       fontWeight: "600",
+    },
+    closeButton: {
+      padding: 8,
+    },
+    closeText: {
+      color: c.textMuted,
+      fontSize: 20,
     },
     menu: { gap: 4 },
     activeItem: {

@@ -1,45 +1,40 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      width: isMobile ? "100%" : 320,
       backgroundColor: c.card,
       borderRadius: 16,
-      padding: 24,
+      padding: isMobile ? 16 : 24,
       borderWidth: 1,
       borderColor: c.cardBorder,
     },
-    sectionLabel: {
-      color: c.textSecondary,
-      fontSize: 10,
-      fontWeight: "700",
-      letterSpacing: 1.5,
-      textTransform: "uppercase",
-      marginBottom: 16,
-    },
-    title: { color: c.text, fontSize: 22, fontWeight: "700", marginBottom: 4 },
-    overall: {
-      color: c.success,
-      fontSize: 28,
-      fontWeight: "800",
-      marginBottom: 4,
-      textAlign: "center",
-    },
-    score: {
-      color: c.textMuted,
-      fontSize: 12,
-      marginBottom: 20,
-      textAlign: "center",
-    },
-    row: {
+    header: {
       flexDirection: "row",
       justifyContent: "space-between",
-      paddingVertical: 10,
-      borderBottomWidth: 1,
-      borderBottomColor: c.divider,
+      alignItems: "center",
+      marginBottom: 20,
     },
-    label: { color: c.textSecondary, fontSize: 13 },
-    value: { fontSize: 13, fontWeight: "600" },
+    title: { color: c.text, fontSize: 16, fontWeight: "700" },
+    icon: { color: c.textSecondary, fontSize: 16 },
+    scoreContainer: { alignItems: "center", marginBottom: 24 },
+    score: { color: c.text, fontSize: 48, fontWeight: "700" },
+    label: { color: "#10B981", fontSize: 14, fontWeight: "600", marginTop: 4 },
+    barContainer: {
+      height: 8,
+      backgroundColor: c.progressTrack,
+      borderRadius: 4,
+      flexDirection: "row",
+      overflow: "hidden",
+      marginBottom: 16,
+    },
+    barBear: { flex: 20, backgroundColor: "#EF4444" },
+    barNeutral: { flex: 15, backgroundColor: "#F59E0B" },
+    barBull: { flex: 65, backgroundColor: "#10B981" },
+    legend: { flexDirection: "row", justifyContent: "space-between" },
+    legendItem: { flexDirection: "row", alignItems: "center", gap: 6 },
+    legendDot: { width: 8, height: 8, borderRadius: 4 },
+    legendText: { color: c.textSecondary, fontSize: 12 },
   });

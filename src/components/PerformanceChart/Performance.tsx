@@ -1,59 +1,60 @@
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from "recharts";
 import { View, Text, Pressable } from "react-native";
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { createStyles } from "./Performance.styles";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 const data = [
-  { month: "Jan", value: 1180000 }, { month: "Feb", value: 1220000 },
-  { month: "Mar", value: 1200000 }, { month: "Apr", value: 1270000 },
-  { month: "May", value: 1310000 }, { month: "Jun", value: 1280000 },
-  { month: "Jul", value: 1360000 }, { month: "Aug", value: 1390000 },
-  { month: "Sep", value: 1424902 },
+  { name: "Jan", val: 4000 },
+  { name: "Feb", val: 3000 },
+  { name: "Mar", val: 5000 },
+  { name: "Apr", val: 4500 },
+  { name: "May", val: 6000 },
+  { name: "Jun", val: 5500 },
+  { name: "Jul", val: 7000 },
 ];
 
-const periods = ["1M", "3M", "1Y", "ALL"];
-
 export default function PerformanceChart() {
-  const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { colors, isDark } = useTheme();
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
+  const periods = ["1W", "1M", "3M", "YTD", "1Y", "ALL"];
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View>
-          <Text style={styles.sectionLabel}>Portfolio Performance</Text>
+          <Text style={styles.title}>Total Portfolio Value</Text>
           <View style={styles.amountRow}>
-            <Text style={styles.amount}>$1,424,902.18</Text>
+            <Text style={styles.amount}>$1,248,500.00</Text>
             <Text style={styles.change}>+12.4%</Text>
           </View>
         </View>
         <View style={styles.periodRow}>
-          {periods.map((p, i) => (
-            <Pressable key={p} style={i === 3 ? styles.periodBtnActive : styles.periodBtn}>
-              <Text style={i === 3 ? styles.periodTextActive : styles.periodText}>{p}</Text>
+          {periods.map((p) => (
+            <Pressable key={p} style={[styles.periodBtn, p === "YTD" && styles.periodBtnActive]}>
+              <Text style={[styles.periodText, p === "YTD" && styles.periodTextActive]}>{p}</Text>
             </Pressable>
           ))}
         </View>
       </View>
-      <ResponsiveContainer width="100%" height={220}>
-        <AreaChart data={data}>
-          <defs>
-            <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={colors.chartLine} stopOpacity={0.25} />
-              <stop offset="100%" stopColor={colors.chartLine} stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill: colors.textMuted, fontSize: 11 }} />
-          <YAxis hide />
-          <Tooltip
-            contentStyle={{ backgroundColor: colors.card, border: `1px solid ${colors.cardBorder}`, borderRadius: 8, color: colors.text, fontSize: 13 }}
-            labelStyle={{ color: colors.textSecondary }}
-            formatter={(value: number) => [`$${value.toLocaleString()}`, "Value"]}
-          />
-          <Area type="monotone" dataKey="value" stroke={colors.chartLine} strokeWidth={3} fill="url(#chartGradient)" dot={false} />
-        </AreaChart>
-      </ResponsiveContainer>
+      <View style={styles.chartContainer}>
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={data}>
+            <defs>
+              <linearGradient id="colorVal" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={colors.primary} stopOpacity={0.3} />
+                <stop offset="95%" stopColor={colors.primary} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="name" stroke={colors.textMuted} fontSize={12} tickLine={false} axisLine={false} />
+            <YAxis hide={true} domain={["dataMin - 1000", "dataMax + 1000"]} />
+            <Tooltip contentStyle={{ backgroundColor: isDark ? "#1E1E1E" : "#FFFFFF", borderColor: isDark ? "#333" : "#E5E7EB", color: colors.text }} itemStyle={{ color: colors.primary }} />
+            <Area type="monotone" dataKey="val" stroke={colors.primary} strokeWidth={2} fillOpacity={1} fill="url(#colorVal)" />
+          </AreaChart>
+        </ResponsiveContainer>
+      </View>
     </View>
   );
 }

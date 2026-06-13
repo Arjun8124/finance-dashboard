@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: c.card,
       borderRadius: 16,
-      padding: 24,
+      padding: isMobile ? 16 : 24,
       borderWidth: 1,
       borderColor: c.cardBorder,
     },
@@ -17,9 +17,15 @@ export const createStyles = (c: ThemeColors) =>
       alignItems: "center",
       marginBottom: 24,
     },
-    title: { color: c.text, fontSize: 22, fontWeight: "700" },
+    title: { color: c.text, fontSize: isMobile ? 20 : 22, fontWeight: "700" },
     actions: { flexDirection: "row", gap: 16 },
     actionText: { color: c.primaryLight, fontSize: 14 },
+    scrollContainer: {
+      width: "100%",
+    },
+    tableContent: {
+      minWidth: 500, // Forces horizontal scroll on very small screens
+    },
     tableHeader: {
       flexDirection: "row",
       paddingBottom: 12,

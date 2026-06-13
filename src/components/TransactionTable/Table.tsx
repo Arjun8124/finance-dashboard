@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { createStyles } from "./Table.styles";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 const transactions = [
@@ -12,7 +13,8 @@ const transactions = [
 
 export default function TransactionTable() {
   const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
     <View style={styles.container}>
@@ -23,23 +25,27 @@ export default function TransactionTable() {
           <Text style={styles.actionText}>Filter</Text>
         </View>
       </View>
-      <View style={styles.tableHeader}>
-        <Text style={[styles.headerText, { flex: 2 }]}>Merchant</Text>
-        <Text style={[styles.headerText, { flex: 1.5 }]}>Category</Text>
-        <Text style={[styles.headerText, { flex: 1 }]}>Status</Text>
-        <Text style={[styles.headerText, { flex: 1 }]}>Amount</Text>
-      </View>
-      {transactions.map((item, index) => (
-        <View key={index} style={styles.row}>
-          <View style={{ flex: 2 }}>
-            <Text style={styles.merchant}>{item.merchant}</Text>
-            <Text style={styles.date}>{item.date}</Text>
+      <ScrollView horizontal={true} style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
+        <View style={styles.tableContent}>
+          <View style={styles.tableHeader}>
+            <Text style={[styles.headerText, { flex: 2 }]}>Merchant</Text>
+            <Text style={[styles.headerText, { flex: 1.5 }]}>Category</Text>
+            <Text style={[styles.headerText, { flex: 1 }]}>Status</Text>
+            <Text style={[styles.headerText, { flex: 1 }]}>Amount</Text>
           </View>
-          <Text style={[styles.cellText, { flex: 1.5 }]}>{item.category}</Text>
-          <Text style={[styles.cellText, { flex: 1, color: item.status === "Pending" ? "#F59E0B" : "#22C55E" }]}>{item.status}</Text>
-          <Text style={[styles.amount, { flex: 1, color: item.amount.startsWith("+") ? "#22C55E" : "#f11e1eff" }]}>{item.amount}</Text>
+          {transactions.map((item, index) => (
+            <View key={index} style={styles.row}>
+              <View style={{ flex: 2 }}>
+                <Text style={styles.merchant}>{item.merchant}</Text>
+                <Text style={styles.date}>{item.date}</Text>
+              </View>
+              <Text style={[styles.cellText, { flex: 1.5 }]}>{item.category}</Text>
+              <Text style={[styles.cellText, { flex: 1, color: item.status === "Pending" ? "#F59E0B" : "#22C55E" }]}>{item.status}</Text>
+              <Text style={[styles.amount, { flex: 1, color: item.amount.startsWith("+") ? "#22C55E" : "#f11e1eff" }]}>{item.amount}</Text>
+            </View>
+          ))}
         </View>
-      ))}
+      </ScrollView>
     </View>
   );
 }

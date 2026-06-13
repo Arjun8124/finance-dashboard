@@ -1,6 +1,7 @@
 import { Text, View } from "react-native";
 import { createStyles } from "./MetricCard.styles";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 type MetricCardProps = {
@@ -12,7 +13,8 @@ type MetricCardProps = {
 
 export default function MetricCard(props: MetricCardProps) {
   const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
     <View style={styles.container}>

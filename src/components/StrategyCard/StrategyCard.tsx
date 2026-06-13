@@ -1,11 +1,13 @@
 import { View, Text, Pressable } from "react-native";
 import { createStyles } from "./StrategyCard.styles";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 export default function StrategyCard() {
   const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
     <View style={styles.container}>

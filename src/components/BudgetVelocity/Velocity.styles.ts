@@ -1,16 +1,23 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
-    container: { flex: 2, backgroundColor: c.card, borderRadius: 20, padding: 28, borderWidth: 1, borderColor: c.cardBorder },
-    label: { color: c.primary, fontSize: 13, letterSpacing: 2, marginBottom: 24 },
-    amountRow: { flexDirection: "row", alignItems: "flex-end", marginBottom: 32 },
-    current: { color: c.text, fontSize: 52, fontWeight: "700" },
-    target: { color: c.textSecondary, fontSize: 24, marginLeft: 12, marginBottom: 8 },
-    progressTrack: { height: 10, borderRadius: 999, backgroundColor: c.progressTrack, overflow: "hidden", marginBottom: 20 },
-    progressFill: { width: "83%", height: "100%", backgroundColor: c.primary, borderRadius: 999 },
+    container: {
+      flex: isMobile ? 0 : 2,
+      backgroundColor: c.card,
+      borderRadius: 16,
+      padding: isMobile ? 16 : 28,
+      borderWidth: 1,
+      borderColor: c.cardBorder,
+    },
+    title: { color: c.textSecondary, fontSize: 13, fontWeight: "600", textTransform: "uppercase", letterSpacing: 1, marginBottom: 12 },
+    amountRow: { flexDirection: "row", alignItems: "flex-end", marginBottom: isMobile ? 24 : 32 },
+    amount: { color: c.text, fontSize: isMobile ? 32 : 48, fontWeight: "700", lineHeight: isMobile ? 36 : 50 },
+    limit: { color: c.textSecondary, fontSize: isMobile ? 14 : 18, marginLeft: 8, marginBottom: 4 },
+    progressContainer: { height: 12, backgroundColor: c.progressTrack, borderRadius: 6, overflow: "hidden", marginBottom: 16 },
+    progressFill: { width: "65%", height: "100%", backgroundColor: c.primary, borderRadius: 6 },
     footer: { flexDirection: "row", justifyContent: "space-between" },
-    leftText: { color: c.textSecondary, fontSize: 14 },
-    rightText: { color: c.primary, fontSize: 14, fontWeight: "600" },
+    status: { color: "#10B981", fontSize: 13, fontWeight: "600" },
+    daysLeft: { color: c.textSecondary, fontSize: 13 },
   });

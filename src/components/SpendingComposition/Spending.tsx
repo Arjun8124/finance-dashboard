@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import { createStyles } from "./Spending.styles";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 const spendingData = [
@@ -12,7 +13,8 @@ const spendingData = [
 
 export default function SpendingComposition() {
   const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
     <View style={styles.container}>
@@ -28,7 +30,10 @@ export default function SpendingComposition() {
           </View>
           <View style={styles.progressTrack}>
             <View
-              style={[styles.progressFill, { width: `${item.percentage}%`, backgroundColor: item.color }]}
+              style={[
+                styles.progressFill,
+                { width: `${item.percentage}%`, backgroundColor: item.color },
+              ]}
             />
           </View>
         </View>

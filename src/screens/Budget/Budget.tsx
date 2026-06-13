@@ -8,11 +8,13 @@ import MetricCard from "../../components/MetricCard";
 import BudgetStrategy from "../../components/BudgetStrategy";
 import RecentAlerts from "../../components/RecentAlerts";
 import { useTheme } from "../../context/ThemeContext";
+import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
 
 export default function Budget() {
   const { colors } = useTheme();
-  const styles = useMemo(() => createStyles(colors), [colors]);
+  const { isMobile } = useResponsive();
+  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
     <View style={styles.container}>
@@ -24,18 +26,8 @@ export default function Budget() {
         <View style={styles.overviewRow}>
           <BudgetVelocity />
           <View style={styles.rightCards}>
-            <MetricCard
-              title="Projected Surplus"
-              value="+$2,550"
-              change=""
-              color="green"
-            />
-            <MetricCard
-              title="Savings Efficiency"
-              value="94.2%"
-              change=""
-              color="green"
-            />
+            <MetricCard title="Projected Surplus" value="+$2,550" change="" color="green" />
+            <MetricCard title="Savings Efficiency" value="94.2%" change="" color="green" />
           </View>
         </View>
         <View style={styles.mainRow}>
@@ -83,8 +75,7 @@ export default function Budget() {
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            © 2023 Editorial Finance. All financial data is encrypted and
-            secure.
+            © 2023 Editorial Finance. All financial data is encrypted and secure.
           </Text>
           <View style={styles.footerLinks}>
             <Text style={styles.footerLink}>Privacy Policy</Text>

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import type { ThemeColors } from "../../constants/theme";
 
-export const createStyles = (c: ThemeColors) =>
+export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
       flexDirection: "row",
@@ -11,9 +11,25 @@ export const createStyles = (c: ThemeColors) =>
       marginBottom: 20,
       borderBottomWidth: 1,
       borderBottomColor: c.divider,
+      gap: 12,
+    },
+    hamburgerMenu: {
+      width: 40,
+      height: 40,
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 10,
+      backgroundColor: c.surfaceHover,
+    },
+    hamburgerText: {
+      fontSize: 20,
+      color: c.text,
+    },
+    searchContainer: {
+      flex: isMobile ? 1 : 0,
     },
     searchInput: {
-      width: 300,
+      width: isMobile ? "100%" : 300,
       backgroundColor: c.inputBg,
       color: c.text,
       paddingHorizontal: 16,
@@ -45,7 +61,7 @@ export const createStyles = (c: ThemeColors) =>
     rightContainer: {
       flexDirection: "row",
       alignItems: "center",
-      gap: 16,
+      gap: 12,
     },
     themeToggle: {
       width: 36,
