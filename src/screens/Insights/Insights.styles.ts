@@ -10,7 +10,7 @@ export const createStyles = (c: ThemeColors, isMobile: boolean) =>
     subtitle: { color: c.textSecondary, fontSize: 14, lineHeight: 22, maxWidth: 600, marginBottom: 8 },
     row: { flexDirection: isMobile ? "column" : "row", gap: 20, alignItems: "stretch" },
     middleRow: { flexDirection: isMobile ? "column" : "row", gap: 20 },
-    middleLeft: { flex: 1 },
+    middleLeft: { flex: isMobile ? undefined : 1 },
     middleRight: { width: isMobile ? "100%" : 280, gap: 16 },
     middleRightNested: { flexDirection: isMobile ? "column" : "row", gap: 12 },
     cashFlowSection: { backgroundColor: c.card, borderRadius: 16, padding: 24, borderWidth: 1, borderColor: c.cardBorder },

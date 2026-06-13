@@ -14,33 +14,72 @@ import { useMemo } from "react";
 export default function DashBoard() {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
-  const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
+  const styles = useMemo(
+    () => createStyles(colors, isMobile),
+    [colors, isMobile],
+  );
 
   return (
     <View style={styles.container}>
       <Sidebar />
-      <ScrollView style={styles.main} contentContainerStyle={styles.mainContent}>
+      <ScrollView
+        style={styles.main}
+        contentContainerStyle={styles.mainContent}
+      >
         <Header />
         <View style={styles.metrics}>
-          <MetricCard title="Total Net Worth" value="$1,248,500" change="+12.4% vs last month" color="#10B981" />
-          <MetricCard title="Monthly Spending" value="$4,280" change="+2.1% higher than avg" color="#F59E0B" />
-          <MetricCard title="Total Savings" value="$245,000" change="On track for Q4 goal" color="#10B981" />
+          <MetricCard
+            title="Total Net Worth"
+            value="$1,248,500"
+            change="+12.4% vs last month"
+            color="#10B981"
+          />
+          <MetricCard
+            title="Monthly Spending"
+            value="$4,280"
+            change="+2.1% higher than avg"
+            color="#F59E0B"
+          />
+          <MetricCard
+            title="Total Savings"
+            value="$245,000"
+            change="On track for Q4 goal"
+            color="#10B981"
+          />
         </View>
         <View style={styles.strategy}>
           <StrategyCard />
           <View style={styles.alertsWrapper}>
             <Text style={styles.alertsTitle}>Active Alerts</Text>
-            <AlertCard title="Subscription Spike" description='3 new recurring charges detected from "Cloud SaaS" in the last 48h.' iconColor="#EF4444" />
-            <AlertCard title="Emergency Fund Cap" description='Your "Rainy Day" fund has reached its target of $20k. Redirecting flows?' iconColor="#F59E0B" />
-            <AlertCard title="Dividend Reinvestment" description="AAPL and MSFT paid dividends today. Automatic reinvestment pending." iconColor="#3B82F6" />
+            <AlertCard
+              title="Subscription Spike"
+              description='3 new recurring charges detected from "Cloud SaaS" in the last 48h.'
+              iconColor="#EF4444"
+            />
+            <AlertCard
+              title="Emergency Fund Cap"
+              description='Your "Rainy Day" fund has reached its target of $20k. Redirecting flows?'
+              iconColor="#F59E0B"
+            />
+            <AlertCard
+              title="Dividend Reinvestment"
+              description="AAPL and MSFT paid dividends today. Automatic reinvestment pending."
+              iconColor="#3B82F6"
+            />
           </View>
         </View>
         <View style={styles.bottomSection}>
-          <View style={styles.spendingWrapper}><SpendingComposition /></View>
-          <View style={styles.tableWrapper}><TransactionTable /></View>
+          <View style={styles.spendingWrapper}>
+            <SpendingComposition />
+          </View>
+          <View style={styles.tableWrapper}>
+            <TransactionTable />
+          </View>
         </View>
         <View style={styles.footer}>
-          <Text style={styles.footerText}>© 2023 Proton Finance. Data encrypted with AES-256.</Text>
+          <Text style={styles.footerText}>
+            © 2023 Proton Finance. Data encrypted with AES-256.
+          </Text>
           <View style={styles.footerLinks}>
             <Text style={styles.footerLink}>Privacy Policy</Text>
             <Text style={styles.footerLink}>Security Audit</Text>

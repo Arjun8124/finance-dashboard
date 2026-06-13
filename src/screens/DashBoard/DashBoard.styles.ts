@@ -11,8 +11,8 @@ export const createStyles = (c: ThemeColors, isMobile: boolean) =>
     alertsWrapper: { width: isMobile ? "100%" : 340, gap: 14 },
     alertsTitle: { color: c.text, fontSize: 20, fontWeight: "700", marginBottom: 2 },
     bottomSection: { flexDirection: isMobile ? "column" : "row", gap: 20, marginTop: 24 },
-    spendingWrapper: { flex: 1 },
-    tableWrapper: { flex: isMobile ? 1 : 1.4 },
+    spendingWrapper: { flex: isMobile ? undefined : 1 },
+    tableWrapper: { flex: isMobile ? undefined : 1.4 },
     footer: {
       flexDirection: isMobile ? "column" : "row",
       justifyContent: isMobile ? "center" : "space-between",

@@ -8,10 +8,10 @@ export const createStyles = (c: ThemeColors, isMobile: boolean) =>
     heading: { color: c.text, fontSize: isMobile ? 32 : 42, fontWeight: "700" },
     period: { color: c.textSecondary, fontSize: 16 },
     overviewRow: { flexDirection: isMobile ? "column" : "row", gap: 20 },
-    rightCards: { flex: 1, gap: 20 },
+    rightCards: { flex: isMobile ? undefined : 1, gap: 20 },
     mainRow: { flexDirection: isMobile ? "column" : "row", gap: 24 },
-    leftSection: { flex: isMobile ? 1 : 2 },
-    rightSection: { flex: 1, gap: 24 },
+    leftSection: { flex: isMobile ? undefined : 2 },
+    rightSection: { flex: isMobile ? undefined : 1, gap: 24 },
     sectionTitle: {
       color: c.text,
       fontSize: 28,

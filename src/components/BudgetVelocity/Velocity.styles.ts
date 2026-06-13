@@ -4,7 +4,7 @@ import type { ThemeColors } from "../../constants/theme";
 export const createStyles = (c: ThemeColors, isMobile: boolean) =>
   StyleSheet.create({
     container: {
-      flex: isMobile ? 0 : 2,
+      flex: isMobile ? undefined : 2,
       backgroundColor: c.card,
       borderRadius: 16,
       padding: isMobile ? 16 : 28,
