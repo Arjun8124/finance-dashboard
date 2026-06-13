@@ -30,9 +30,9 @@ export const styles = StyleSheet.create({
   },
   signal: {
     color: "#FFFFFF",
-    fontSize: 22,
+    fontSize: 40,
     fontWeight: "700",
-    lineHeight: 30,
+    lineHeight: 50,
     marginBottom: 12,
   },
   description: {
