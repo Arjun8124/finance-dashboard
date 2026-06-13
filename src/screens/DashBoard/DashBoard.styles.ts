@@ -6,11 +6,28 @@ export const createStyles = (c: ThemeColors, isMobile: boolean) =>
     container: { flex: 1, flexDirection: "row", backgroundColor: c.background },
     main: { flex: 1, minWidth: 0 },
     mainContent: { padding: isMobile ? 16 : 28, paddingBottom: 0 },
-    metrics: { flexDirection: isMobile ? "column" : "row", gap: 20, marginTop: 20 },
-    strategy: { flexDirection: isMobile ? "column" : "row", gap: 20, marginTop: 24 },
+    metrics: {
+      flexDirection: isMobile ? "column" : "row",
+      gap: 20,
+      marginTop: 20,
+    },
+    strategy: {
+      flexDirection: isMobile ? "column" : "row",
+      gap: 20,
+      marginTop: 24,
+    },
     alertsWrapper: { width: isMobile ? "100%" : 340, gap: 14 },
-    alertsTitle: { color: c.text, fontSize: 20, fontWeight: "700", marginBottom: 2 },
-    bottomSection: { flexDirection: isMobile ? "column" : "row", gap: 20, marginTop: 24 },
+    alertsTitle: {
+      color: c.text,
+      fontSize: 20,
+      fontWeight: "700",
+      marginBottom: 2,
+    },
+    bottomSection: {
+      flexDirection: isMobile ? "column" : "row",
+      gap: 20,
+      marginTop: 24,
+    },
     spendingWrapper: { flex: isMobile ? undefined : 1 },
     tableWrapper: { flex: isMobile ? undefined : 1.4 },
     footer: {

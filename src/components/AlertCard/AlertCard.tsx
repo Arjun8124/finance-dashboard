@@ -1,11 +1,19 @@
 import { View, Text } from "react-native";
 import { createStyles } from "./AlertCard.styles";
 import { useTheme } from "../../context/ThemeContext";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
-type AlertCardProps = { title: string; description: string; iconColor?: string };
+type AlertCardProps = {
+  title: string;
+  description: string;
+  iconColor?: string;
+};
 
-export default function AlertCard({ title, description, iconColor = "#F59E0B" }: AlertCardProps) {
+function AlertCard({
+  title,
+  description,
+  iconColor = "#F59E0B",
+}: AlertCardProps) {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
@@ -21,3 +29,5 @@ export default function AlertCard({ title, description, iconColor = "#F59E0B" }:
     </View>
   );
 }
+
+export default memo(AlertCard);

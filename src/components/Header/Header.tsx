@@ -5,6 +5,7 @@ import useDebounce from "../../hooks/useDebounce";
 import { useEffect, useState, useMemo } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import useResponsive from "../../hooks/useResponsive";
+import useAnalytics from "../../hooks/useAnalytics";
 import { useMobileNav } from "../../context/MobileNavContext";
 
 export default function Header() {
@@ -13,6 +14,7 @@ export default function Header() {
   const { isDark, colors, toggleTheme } = useTheme();
   const { isMobile } = useResponsive();
   const { openSidebar } = useMobileNav();
+  const { trackEvent } = useAnalytics();
   const styles = useMemo(
     () => createStyles(colors, isMobile),
     [colors, isMobile],
@@ -21,14 +23,22 @@ export default function Header() {
   const [search, setSearch] = useState<string>("");
   const debouncedSearch = useDebounce<string>(search, 500);
 
+  // Track search usage once the user stops typing (debounced).
   useEffect(() => {
-    console.log("Searching Portfolio:", debouncedSearch);
-  }, [debouncedSearch]);
+    if (debouncedSearch.trim()) {
+      trackEvent("search", { query: debouncedSearch });
+    }
+  }, [debouncedSearch, trackEvent]);
 
   return (
     <View style={styles.container}>
       {isMobile && (
-        <Pressable style={styles.hamburgerMenu} onPress={openSidebar}>
+        <Pressable
+          style={styles.hamburgerMenu}
+          onPress={openSidebar}
+          accessibilityRole="button"
+          accessibilityLabel="Open navigation menu"
+        >
           <Text style={styles.hamburgerText}>☰</Text>
         </Pressable>
       )}
@@ -42,6 +52,7 @@ export default function Header() {
           }
           placeholderTextColor={colors.textMuted}
           style={styles.searchInput}
+          accessibilityLabel="Search portfolio or markets"
         />
       </View>
 
@@ -79,7 +90,14 @@ export default function Header() {
       )}
 
       <View style={styles.rightContainer}>
-        <Pressable style={styles.themeToggle} onPress={toggleTheme}>
+        <Pressable
+          style={styles.themeToggle}
+          onPress={toggleTheme}
+          accessibilityRole="button"
+          accessibilityLabel={
+            isDark ? "Switch to light mode" : "Switch to dark mode"
+          }
+        >
           <Text style={styles.themeToggleText}>{isDark ? "☀️" : "🌙"}</Text>
         </Pressable>
         {!isMobile && <Text style={styles.navItem}>Settings</Text>}

@@ -3,15 +3,13 @@ import { createStyles } from "./Spending.styles";
 import { useTheme } from "../../context/ThemeContext";
 import useResponsive from "../../hooks/useResponsive";
 import { useMemo } from "react";
+import type { SpendingSlice } from "../../api/mockData";
 
-const spendingData = [
-  { category: "Housing & Utilities", percentage: 42, color: "#A5B4FC" },
-  { category: "Dining & Leisure", percentage: 18, color: "#FDBA74" },
-  { category: "Investments", percentage: 25, color: "#34D399" },
-  { category: "Transportation", percentage: 15, color: "#94A3B8" },
-];
+type SpendingCompositionProps = {
+  data: SpendingSlice[];
+};
 
-export default function SpendingComposition() {
+export default function SpendingComposition({ data }: SpendingCompositionProps) {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
   const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
@@ -22,7 +20,7 @@ export default function SpendingComposition() {
         <Text style={styles.title}>Spending Composition</Text>
         <Text style={styles.viewAll}>View All</Text>
       </View>
-      {spendingData.map((item) => (
+      {data.map((item) => (
         <View key={item.category} style={styles.itemContainer}>
           <View style={styles.row}>
             <Text style={styles.category}>{item.category}</Text>

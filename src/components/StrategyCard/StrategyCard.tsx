@@ -2,11 +2,13 @@ import { View, Text, Pressable } from "react-native";
 import { createStyles } from "./StrategyCard.styles";
 import { useTheme } from "../../context/ThemeContext";
 import useResponsive from "../../hooks/useResponsive";
+import useAnalytics from "../../hooks/useAnalytics";
 import { useMemo } from "react";
 
 export default function StrategyCard() {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
+  const { trackEvent } = useAnalytics();
   const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
@@ -20,7 +22,11 @@ export default function StrategyCard() {
         opportunities to increase yield by 2.4%.
       </Text>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.primaryButton}>
+        <Pressable
+          style={styles.primaryButton}
+          accessibilityRole="button"
+          onPress={() => trackEvent("execute_strategy")}
+        >
           <Text style={styles.primaryText}>Execute Strategy</Text>
         </Pressable>
         <Pressable style={styles.secondaryButton}>

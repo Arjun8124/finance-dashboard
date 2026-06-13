@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import { createStyles } from "./Category.styles";
 import { useTheme } from "../../context/ThemeContext";
 import useResponsive from "../../hooks/useResponsive";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 type BudgetCategoryCardProps = {
   title: string;
@@ -13,7 +13,7 @@ type BudgetCategoryCardProps = {
   color: string;
 };
 
-export default function BudgetCategoryCard(props: BudgetCategoryCardProps) {
+function BudgetCategoryCard(props: BudgetCategoryCardProps) {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
   const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
@@ -47,3 +47,5 @@ export default function BudgetCategoryCard(props: BudgetCategoryCardProps) {
     </View>
   );
 }
+
+export default memo(BudgetCategoryCard);

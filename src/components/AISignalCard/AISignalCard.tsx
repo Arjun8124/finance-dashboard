@@ -3,7 +3,11 @@ import { createStyles } from "./AISignalCard.styles";
 import { useTheme } from "../../context/ThemeContext";
 import { useMemo } from "react";
 
-export default function AISignalCard() {
+type AISignalCardProps = {
+  signal?: string;
+};
+
+export default function AISignalCard({ signal }: AISignalCardProps) {
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
@@ -14,7 +18,8 @@ export default function AISignalCard() {
         <Text style={styles.label}>Active Signal: Rebalance Priority</Text>
       </View>
       <Text style={styles.signal}>
-        Your technology exposure has increased by 14.2% since last quarter.
+        {signal ??
+          "Your technology exposure has increased by 14.2% since last quarter."}
       </Text>
       <Text style={styles.description}>
         Our algorithms suggest shifting 4% of gains into emerging market debt

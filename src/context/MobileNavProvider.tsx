@@ -5,11 +5,11 @@ export function MobileNavProvider({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   return (
-    <MobileNavContext.Provider 
-      value={{ 
-        isSidebarOpen, 
-        openSidebar: () => { console.log("Opening sidebar!"); setIsSidebarOpen(true); }, 
-        closeSidebar: () => { console.log("Closing sidebar!"); setIsSidebarOpen(false); } 
+    <MobileNavContext.Provider
+      value={{
+        isSidebarOpen,
+        openSidebar: () => setIsSidebarOpen(true),
+        closeSidebar: () => setIsSidebarOpen(false),
       }}
     >
       {children}

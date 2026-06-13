@@ -50,7 +50,12 @@ export default function Sidebar() {
               </View>
             </View>
             {isMobile && (
-              <Pressable style={styles.closeButton} onPress={closeSidebar}>
+              <Pressable
+                style={styles.closeButton}
+                onPress={closeSidebar}
+                accessibilityRole="button"
+                accessibilityLabel="Close navigation menu"
+              >
                 <Text style={styles.closeText}>✕</Text>
               </Pressable>
             )}
@@ -64,6 +69,8 @@ export default function Sidebar() {
                   key={item.path}
                   style={[styles.menuItem, isActive && styles.activeItem]}
                   onPress={() => handleNav(item.path)}
+                  accessibilityRole="link"
+                  accessibilityLabel={item.label}
                 >
                   <Text
                     style={[styles.menuIcon, isActive && styles.activeIcon]}

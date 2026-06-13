@@ -2,18 +2,18 @@ import { View, Text, ScrollView } from "react-native";
 import { createStyles } from "./Table.styles";
 import { useTheme } from "../../context/ThemeContext";
 import useResponsive from "../../hooks/useResponsive";
+import useAnalytics from "../../hooks/useAnalytics";
 import { useMemo } from "react";
+import type { Transaction } from "../../api/mockData";
 
-const transactions = [
-  { merchant: "Apple Store Soho", category: "Technology", status: "Cleared", amount: "-$1,299.00", date: "Oct 24, 2023" },
-  { merchant: "Blue Hill Farm", category: "Lifestyle", status: "Cleared", amount: "-$485.20", date: "Oct 23, 2023" },
-  { merchant: "ConEd Utility Bill", category: "Utilities", status: "Pending", amount: "-$214.10", date: "Oct 22, 2023" },
-  { merchant: "Monthly Salary Deposit", category: "Income", status: "Cleared", amount: "+$12,500.00", date: "Oct 21, 2023" },
-];
+type TransactionTableProps = {
+  data: Transaction[];
+};
 
-export default function TransactionTable() {
+export default function TransactionTable({ data }: TransactionTableProps) {
   const { colors } = useTheme();
   const { isMobile } = useResponsive();
+  const { trackEvent } = useAnalytics();
   const styles = useMemo(() => createStyles(colors, isMobile), [colors, isMobile]);
 
   return (
@@ -21,8 +21,20 @@ export default function TransactionTable() {
       <View style={styles.header}>
         <Text style={styles.title}>Recent Activity</Text>
         <View style={styles.actions}>
-          <Text style={styles.actionText}>Export CSV</Text>
-          <Text style={styles.actionText}>Filter</Text>
+          <Text
+            style={styles.actionText}
+            accessibilityRole="button"
+            onPress={() => trackEvent("export_csv")}
+          >
+            Export CSV
+          </Text>
+          <Text
+            style={styles.actionText}
+            accessibilityRole="button"
+            onPress={() => trackEvent("filter_click")}
+          >
+            Filter
+          </Text>
         </View>
       </View>
       <ScrollView horizontal={true} style={styles.scrollContainer} showsHorizontalScrollIndicator={false}>
@@ -33,8 +45,8 @@ export default function TransactionTable() {
             <Text style={[styles.headerText, { flex: 1 }]}>Status</Text>
             <Text style={[styles.headerText, { flex: 1 }]}>Amount</Text>
           </View>
-          {transactions.map((item, index) => (
-            <View key={index} style={styles.row}>
+          {data.map((item) => (
+            <View key={item.id} style={styles.row}>
               <View style={{ flex: 2 }}>
                 <Text style={styles.merchant}>{item.merchant}</Text>
                 <Text style={styles.date}>{item.date}</Text>
