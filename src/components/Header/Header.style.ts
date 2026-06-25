@@ -26,10 +26,13 @@ export const createStyles = (c: ThemeColors, isMobile: boolean) =>
       color: c.text,
     },
     searchContainer: {
-      flex: isMobile ? 1 : 0,
+      flex: 1,
+      minWidth: 0,
+      maxWidth: isMobile ? undefined : 300,
     },
     searchInput: {
-      width: isMobile ? "100%" : 300,
+      width: "100%",
+      minWidth: 0,
       backgroundColor: c.inputBg,
       color: c.text,
       paddingHorizontal: 16,
